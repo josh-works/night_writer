@@ -119,4 +119,4 @@ Oh, and lets do it in my `night_writer` class, because I've already got it! I mi
 
 Take a look at this outline, see if you can figure it out:
 
-https://github.com/josh-works/night_writer/commit/
+https://github.com/josh-works/night_writer/commit/6b21c41
