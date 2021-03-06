@@ -120,3 +120,8 @@ Oh, and lets do it in my `night_writer` class, because I've already got it! I mi
 Take a look at this outline, see if you can figure it out:
 
 https://github.com/josh-works/night_writer/commit/6b21c41
+
+Consider skimming:
+
+- [https://www.rubyguides.com/2015/05/working-with-files-ruby/](https://www.rubyguides.com/2015/05/working-with-files-ruby/)
+- [https://www.educba.com/ruby-read-file/](https://www.educba.com/ruby-read-file/)
