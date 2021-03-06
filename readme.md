@@ -6,7 +6,7 @@ It _might_ be helpful to have worked through a bit of the above `Futbol` project
 
 Onward!
 
-19b01a1
+https://github.com/josh-works/night_writer/commit/19b01a1
 
 ----------------
 
@@ -88,3 +88,7 @@ Let's start there, re-reading the steps:
 So lets do that. Create a `lib/night_writer.rb` file (and it's associated test file. Get them both outlined as much as we can right now, without knowing anything else about what we're going to write. Check the commit I'll give you in a moment for an example).
 
 Besides creating the `night_writer` file, we'll create a `message.txt` file, containing... however many characters we want.
+
+Here's what I did:
+ 
+[https://github.com/josh-works/night_writer/commit/63d438c](https://github.com/josh-works/night_writer/commit/63d438c)
