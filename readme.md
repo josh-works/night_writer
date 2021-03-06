@@ -76,4 +76,15 @@ For starters, you could try to make a ruby app that just... copies, and maybe mo
 
 After writing the new file, print a message to the terminal saying that you did as much.
 
-Let's start there...
+Let's start there, re-reading the steps:
+
+> In the example above:
+> 
+>     ./lib/night_writer.rb is the path to your Ruby program.
+>     message.txt is the name of an existing text file in your project directory.
+>     braille.txt is the name that we would like to give to a file that we will create in iteration 2.
+>     256 is the count of characters in your message.txt file.
+
+So lets do that. Create a `lib/night_writer.rb` file (and it's associated test file. Get them both outlined as much as we can right now, without knowing anything else about what we're going to write. Check the commit I'll give you in a moment for an example).
+
+Besides creating the `night_writer` file, we'll create a `message.txt` file, containing... however many characters we want.
