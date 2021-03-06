@@ -92,3 +92,31 @@ Besides creating the `night_writer` file, we'll create a `message.txt` file, con
 Here's what I did:
  
 [https://github.com/josh-works/night_writer/commit/63d438c](https://github.com/josh-works/night_writer/commit/63d438c)
+
+From the instructions:
+
+> In order to break this problem down further, you may wish to work on things in the following order:
+> 
+> 1. Create a Ruby program that prints the sample line of text provided above no matter what arguments are provided from the command line.
+> 1. Update your existing program so that the name of the file that it prints out changes based on the second input that the user provides from the command line.
+> 1. Further update your program so that the number of characters it prints out changes based on the number of characters in the file that the user provides as the first argument that the user provides from the command line.
+
+
+Let's do this in order. \#2 builds on \#1, and \# builds on \#2, etc etc.
+
+## Create a Ruby program that prints the sample line of text provided above no matter what arguments are provided from the command line
+
+So, how would we do this? How would we use it?
+
+```
+ruby something_or_another.rb
+=> contents_of_message.txt
+```
+
+Cool. So, I've got two quotes in my `message.txt`, so lets figure out how to print it to the terminal.
+
+Oh, and lets do it in my `night_writer` class, because I've already got it! I might not keep it there forever, but it's a starting point.
+
+Take a look at this outline, see if you can figure it out:
+
+https://github.com/josh-works/night_writer/commit/
