@@ -125,3 +125,40 @@ Consider skimming:
 
 - [https://www.rubyguides.com/2015/05/working-with-files-ruby/](https://www.rubyguides.com/2015/05/working-with-files-ruby/)
 - [https://www.educba.com/ruby-read-file/](https://www.educba.com/ruby-read-file/)
+
+OK, so let's implement this first step: 
+
+> Create a Ruby program that prints the sample line of text provided above no matter what arguments are provided from the command line.
+
+Or, translated: 
+
+> Modify your night_writer.rb file to print the contents of the file you created, so you can call `ruby lib/night_writer.rb` and get the file printed back to your terminal
+
+Take a moment. Read the `rubyguides` link. 
+
+[...]
+
+Did you get it?
+
+```ruby
+# lib/night_writer.rb
+class NightWriter
+  def print_message
+    file = File.open("message.txt").read
+    puts file
+  end
+end
+NightWriter.new.print_message
+```
+
+Boom. I'm seeing some sweet Robert Moses in my terminal:
+
+![robert moses](/images/2021-03-06-at-4.47-PM-robert-moses.jpg)
+
+Try changing the contents of _your_ `messages.rb`, see what kind of stuff you can print out for yourself. Maybe copy-paste random samples from [https://somuchtoread.wordpress.com/the-power-broker/](https://somuchtoread.wordpress.com/the-power-broker/)
+
+Actually, I'll cycle through quotes from the above book summary in/out of my `messages.txt` file. You'll love it, I'm sure. :)
+
+Here's the current commit:
+
+
