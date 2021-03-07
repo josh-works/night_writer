@@ -355,3 +355,81 @@ By now, you should notice that if you provide two arguments, and the first one i
 ![reading from terminal](/images/2021-03-06-at-7.05-PM-writing-to-file.jpg)
 
 So, it looks like it's working! 
+
+https://github.com/josh-works/night_writer/commit/e19f4bd
+
+Now, there's some cleanup we need to do. First, this program is fragile. If you run it with a single argument, it errors out. 
+
+So, lets modify our `initialize` to make it more robust:
+
+```ruby
+class NightWriter
+  attr_reader :input_file_path,
+              :output_file_path
+  def initialize()
+    @input_file_path = ARGV[0]
+    @output_file_path = ARGV[1] || input_file_path + "_copy"
+  end
+```
+
+Hah. this doesn't quite work, it now creates a file titled `message.txt_copy`, which, well, duh, that's what I told it to do. Let's be more sophisiticated, and verbose:
+
+```ruby
+class NightWriter
+  attr_reader :input_file_path,
+              :output_file_path
+  def initialize()
+    @input_file_path = ARGV[0]
+    @output_file_path = build_output_file_path_from_input_file_path
+  end
+  
+  def build_output_file_path_from_input_file_path
+    return ARGV[1] if ARGV[1]
+    # this is a "guard clause", if ARGV[1] has been provided, we just use it, no further work required. Otherwise...
+    
+    path = input_file_path.split.first
+    extension = input_file_path.split.last
+    
+    return path + "_copy" + extension
+  end
+```
+
+Now lets see if it works.
+
+Not quite. Had to improve my `splits` and such. Here's the method that actuall works, comments removed:
+
+```ruby
+def build_output_file_path_from_input_file_path
+  return ARGV[1] if ARGV[1]
+  
+  path = input_file_path.split(".").first
+  extension = input_file_path.split(".").last
+  
+  return path + "_copy" + "." + extension
+end
+```
+
+And this can be simplified a little more, even, with _multiple assignment_:
+
+```ruby
+def build_output_file_path_from_input_file_path
+  return ARGV[1] if ARGV[1]
+  
+  path, extension = input_file_path.split(".")
+  
+  return path + "_copy" + "." + extension
+end
+```
+
+OK. Let's add some different messages, and confirm they work. I'm creating a few files, like `message_2.txt`, and `robert_moses_quotables.txt`, running them through the tool, and making sure I'm getting the copies written in the way I expect. 
+
+Oh, and I have to print the number of characters written.
+
+I added:
+
+```ruby
+puts "the file contains #{message.size} characters"
+```
+in a strategic spot, and all looks good to me, other than, well, my `write_message_to_file` has a lot going on, not "good", but I'll refactor it later.
+
+

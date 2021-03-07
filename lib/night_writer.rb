@@ -3,7 +3,18 @@ class NightWriter
               :output_file_path
   def initialize()
     @input_file_path = ARGV[0]
-    @output_file_path = ARGV[1]
+    @output_file_path = build_output_file_path_from_input_file_path
+  end
+  
+  def build_output_file_path_from_input_file_path
+    unless input_file_path 
+      raise "oops, no input file given, we don't have anything to write"
+    end
+    return ARGV[1] if ARGV[1]
+    
+    path, extension = input_file_path.split(".")
+    
+    return path + "_copy" + "." + extension
   end
   
   def read_message
@@ -19,6 +30,7 @@ class NightWriter
     puts "wrote the following message to a file by the title of:"
     puts output_file_path
     puts message
+    puts "the file contains #{message.size} characters"
   end
 end
 puts NightWriter.new.write_message_to_file
