@@ -161,4 +161,61 @@ Actually, I'll cycle through quotes from the above book summary in/out of my `me
 
 Here's the current commit:
 
+https://github.com/josh-works/night_writer/commit/522c737
+
+## Update your existing program so that the name of the file that it prints out changes based on the second input that the user provides from the command line.
+
+phew, there's a middle step. Instead of `puts`'ing to the terminal, write a new file to the terminal. something like this:
+
+```ruby
+def read_write
+  message = "i'm a cool message"
+  File.open("./message.txt", "+a") do |file|
+    file.write(message)
+  end
+end
+```
+
+Whenever you run the above bit of code, it _should_ create a new file with the given title, write the message to the file, and... if you `ls` wherever it wrote the file, you should see the new file. Try changing the message. 
+
+So, we can upgrade this to make the message that we write to "dynamic", like:
+
+```ruby
+def read_write(desired_file_path)
+  message = "i am a message"
+  File.open(desired_file_path, "a+") do |file|
+    file.write(message)
+  end
+end
+
+NightWriter.new.read_write('write_to_this_file.txt')
+```
+
+I interpret this to mean:
+
+> Update night_writer.rb so that: 
+> 1. the name of the file that it writes to prints out changes based on the second input that you give it, like so:
+
+```shell
+ruby ./lib/night_writer write_a_message_to_this_file.txt
+```
+
+For getting this input from the command line, check out:
+
+- [https://stackoverflow.com/questions/6556280/read-input-from-console-in-ruby](https://stackoverflow.com/questions/6556280/read-input-from-console-in-ruby)
+- [https://www.codecademy.com/articles/ruby-command-line-argv](https://www.codecademy.com/articles/ruby-command-line-argv)
+- [https://careerkarma.com/blog/build-ruby-cli/](https://careerkarma.com/blog/build-ruby-cli/)
+
+
+-------------------- 
+
+Hint for the CLI stuff:
+
+```
+$ ruby lib/night_writer.rb "hi there"
+```
+
+![it works](/images/2021-03-06-at-5.05-PM-argv.jpg)
+
+Hint:
 
