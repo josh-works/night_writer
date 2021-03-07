@@ -307,5 +307,51 @@ All the following quotes will be from a book review about [The Power Broker: Rob
 
 We need to _read_ from files, and also write _to_ files. We've got "reading" going on, lets add some "writing" real quick. I made a few more changes from the above code snippet, a bit of a refactor:
 
-https://github.com/josh-works/night_writer/commit/
+https://github.com/josh-works/night_writer/commit/692b04a
 
+Here's what I ended up adding as a first pass. It doesn't quite work, but you should be able to see where I'm going:
+
+```ruby
+class NightWriter
+  attr_reader :input_file_path,
+              :output_file_path
+  def initialize()
+    @input_file_path = ARGV[0]
+    @output_file_path = ARGV[1]
+  end
+  
+  def read_message
+    File.open(input_file_path).read
+  end
+  
+  def write_message_to_file
+    message = read_message
+    message += " This message was created at: " + Time.now.to_s
+    File.open(output_file_path, "w") do |file|
+      file.write(message)
+    end
+    puts "wrote the following message to a file by the title of:"
+    puts output_file_path
+    puts message
+  end
+end
+puts NightWriter.new.write_message_to_file
+
+```
+
+Run it in your terminal. Try a few different options, like:
+
+```shell
+$ ruby ./lib/night_writer.rb
+$ ruby ./lib/night_writer.rb message.txt
+$ ruby ./lib/night_writer.rb not_real123234234.txt
+$ ruby ./lib/night_writer.rb message.txt message_copy.txt
+```
+
+And so on. There's a lot to observe here.
+
+By now, you should notice that if you provide two arguments, and the first one is a real file in your directory, you should have something working:
+
+![reading from terminal](/images/2021-03-06-at-7.05-PM-writing-to-file.jpg)
+
+So, it looks like it's working! 
