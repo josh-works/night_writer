@@ -220,3 +220,92 @@ $ ruby lib/night_writer.rb "hi there"
 Hint:
 
 https://github.com/josh-works/night_writer/commit/c163dbe
+
+Let's start playing around with getting file_paths. 
+
+Wouldn't it be nice to be able to run:
+
+```
+$ ruby lib/night_writer.rb message.txt
+
+```
+
+And get this `NightWriter` instance with an attribute like `input_file_name`, and then we'd do:
+
+```ruby
+NightWriter.new.input_file_name
+=> 'message.txt'
+```
+
+Let's build that:
+
+```ruby
+class NightWriter
+  def initialize()
+    require "pry"; binding.pry
+    @input_file_path = ARGV[0] || nil
+    @output_file_path = ARGV[1] || nil
+  end
+  
+  def print_message
+    file = File.open("message.txt").read
+    puts file
+  end
+  
+  
+end
+nr = NightWriter.new
+
+```
+
+^^ this is what I first tried. Can you make that code better? (Hint - the `|| nil` is redundant, and now when I call `File.open` I can pass in a file path, eh?)
+
+I ended up with:
+
+```ruby
+class NightWriter
+  attr_reader :input_file_path,
+              :output_file_path
+  def initialize()
+    @input_file_path = ARGV[0]
+    @output_file_path = ARGV[1]
+  end
+  
+  def print_message
+    file = File.open(input_file_path).read
+    puts file
+  end
+end
+nr = NightWriter.new
+```
+
+but it's not working quite right. It's not printing anything to the terminal...
+
+So what do we do?
+
+> Stick a pry in it!!!!
+
+(I'm putting the pry inside my `print_message` method, after assigning `file = File.open(input_file_path).read`)
+
+lol I missed the pry, outside the class I'm not calling `print_message`:
+
+```ruby
+NightWriter.new
+# vs
+NightWriter.new.print_message
+```
+
+Please note I'm not writing any "official code" yet, I'm just kicking the tires to see what I want to do. I'll start writing tests once I have the shape of the problem in my mind.
+
+Great success!
+
+![printing RM quote](/images/2021-03-06-at-6.50-PM-printing-successfully.jpg)
+
+All the following quotes will be from a book review about [The Power Broker: Robert Moses and the Fall of New York](https://www.goodreads.com/book/show/1111.The_Power_Broker). I believe Robert Moses is a rather important individual, doubly so because it's likely you've not heard of him.
+
+## Let's also _write_ to a file
+
+We need to _read_ from files, and also write _to_ files. We've got "reading" going on, lets add some "writing" real quick. I made a few more changes from the above code snippet, a bit of a refactor:
+
+https://github.com/josh-works/night_writer/commit/
+

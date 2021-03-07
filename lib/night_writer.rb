@@ -1,25 +1,15 @@
 class NightWriter
-  
-  # read contents of a file in ruby (Look up File.open)
-  # https://ruby-doc.org/core-2.6.5/File.html
-  
-  # write it to another file
-  
-  def get_cli_arguments
-    require "pry"; binding.pry
-    ARGV
+  attr_reader :input_file_path,
+              :output_file_path
+  def initialize()
+    @input_file_path = ARGV[0]
+    @output_file_path = ARGV[1]
   end
   
-  def print_message
-    file = File.open("message.txt").read
-    puts file
+  def read_message
+    File.open(input_file_path).read
   end
-  
-  
 end
+puts NightWriter.new.read_message
 
-NightWriter.new.get_cli_arguments
-# NightWriter.new.print_message
 
-# Test how this works with the following in your terminal:
-# ruby lib/night_writer.rb
