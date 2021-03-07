@@ -219,3 +219,4 @@ $ ruby lib/night_writer.rb "hi there"
 
 Hint:
 
+https://github.com/josh-works/night_writer/commit/c163dbe
