@@ -432,4 +432,6 @@ puts "the file contains #{message.size} characters"
 ```
 in a strategic spot, and all looks good to me, other than, well, my `write_message_to_file` has a lot going on, not "good", but I'll refactor it later.
 
+This finishes Iteration 1:
 
+https://github.com/josh-works/night_writer/commit/032359a
