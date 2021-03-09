@@ -1,3 +1,5 @@
+require './lib/helper'
+
 class NightWriter
   attr_reader :input_file_path,
               :output_file_path
@@ -21,18 +23,23 @@ class NightWriter
     File.open(input_file_path).read
   end
   
+  def convert_message_to_braille
+    letters = BrailleLetterGenerator.brail_characters(read_message)
+    BrailleWriter.write(letters)
+  end
+  
   def write_message_to_file
-    message = read_message
-    message += " This message was created at: " + Time.now.to_s
+    message = convert_message_to_braille
+  
     File.open(output_file_path, "w") do |file|
       file.write(message)
     end
     puts "wrote the following message to a file by the title of:"
     puts output_file_path
     puts message
-    puts "the file contains #{message.size} characters"
+    # puts "the file contains #{message.size} characters"
   end
 end
-puts NightWriter.new.write_message_to_file
+NightWriter.new.write_message_to_file
 
 

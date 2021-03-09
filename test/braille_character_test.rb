@@ -23,4 +23,13 @@ class BrailleCharacterTest < Minitest::Test
     assert_equal "h", bc.english
   end
   
+  def test_all_has_all_characters
+    assert_equal 26, BrailleCharacter.all.count
+    assert_instance_of BrailleCharacter, BrailleCharacter.all.first
+  end
+  
+  def test_find_can_get_character
+    assert_instance_of BrailleCharacter, BrailleCharacter.find("a")
+  end
+  
 end
