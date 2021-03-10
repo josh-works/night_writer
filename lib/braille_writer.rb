@@ -8,6 +8,6 @@ class BrailleWriter
       output_mid << char.braille[:mid]
       output_btm << char.braille[:btm]
     end
-    "#{output_top}\n#{output_mid}\n#{output_btm}"
+    puts "#{output_top}\n#{output_mid}\n#{output_btm}"
   end
 end

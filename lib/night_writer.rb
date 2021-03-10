@@ -25,7 +25,14 @@ class NightWriter
   
   def convert_message_to_braille
     letters = BrailleLetterGenerator.brail_characters(read_message)
-    BrailleWriter.write(letters)
+    write_40_braille_chars_at_a_time(letters)
+  end
+  
+  def write_40_braille_chars_at_a_time(letters)
+    while letters.length > 0
+      msg = letters.shift(40)
+      BrailleWriter.write(msg)
+    end
   end
   
   def write_message_to_file
